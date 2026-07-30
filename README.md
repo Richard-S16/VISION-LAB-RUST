@@ -53,6 +53,7 @@ Native detector responsibilities are separated under `src-tauri/src/detector/`:
 - WebView2 Runtime.
 - Node.js 22 or newer.
 - Rust 1.97.1 with the MSVC target and Visual Studio C++ build tools.
+- `wasm-pack` 0.15.0 for the Rust/WASM frontend build.
 - NSIS support supplied through the Tauri CLI for installer builds.
 
 Rust version and components are pinned in `rust-toolchain.toml`. JavaScript and Rust dependencies are locked by `package-lock.json` and `Cargo.lock`.
@@ -68,15 +69,14 @@ preprocessor_config.json
 checksums.json
 ```
 
-`model.onnx` exceeds GitHub's regular file limit and is not stored in Git. Download the pinned model before building or running detector tests:
+`model.onnx` exceeds GitHub's regular file limit and is stored with Git LFS. Install Git LFS before cloning, then fetch the model object:
 
 ```powershell
-Invoke-WebRequest `
-  -Uri "https://huggingface.co/onnx-community/rfdetr_nano-ONNX/resolve/eae21cee0687a91bcf9fa071605c48d7705d2d91/onnx/model.onnx" `
-  -OutFile "models/rfdetr-nano/model.onnx"
+git lfs install
+git lfs pull
 ```
 
-Verify the downloaded file:
+Verify the checked-out file:
 
 ```powershell
 (Get-FileHash "models/rfdetr-nano/model.onnx" -Algorithm SHA256).Hash.ToLower()
@@ -104,6 +104,7 @@ Install frontend dependencies:
 ```powershell
 npm ci
 npm ci --prefix tools
+cargo install wasm-pack --version 0.15.0 --locked
 ```
 
 Run the desktop application in development mode:
@@ -170,6 +171,7 @@ Golden fixtures under `tests/fixtures/` compare native CPU output with recorded 
 
 ```text
 frontend/                 WebView presentation and Babylon integration
+crates/vision-lab-ui/     Rust/WASM controller, HUD, overlay, and controls
 src-tauri/                Tauri host and production native detector
 crates/                   Native inference feasibility spike
 models/rfdetr-nano/       Pinned model configuration and checksum manifest
@@ -183,7 +185,7 @@ third-party/              Asset provenance and license material
 
 ## Current Status
 
-Completed work includes baseline capture, native inference feasibility, Tauri parity shell, native detector service, and native frontend integration. Remaining work covers the Rust/WASM application controller, hardened Babylon adapter lifecycle, and clean-machine release verification.
+Completed work includes baseline capture, native inference feasibility, Tauri parity shell, native detector service, native frontend integration, and the Rust/WASM application controller. Remaining work covers hardened Babylon adapter lifecycle and clean-machine release verification.
 
 Detailed implementation reports are available in `docs/`.
 

@@ -6,4 +6,4 @@ tools/playwright-report/
 /dist/
 /src-tauri/gen/
 /plan.md
-/models/rfdetr-nano/model.onnx
+/frontend/pkg/

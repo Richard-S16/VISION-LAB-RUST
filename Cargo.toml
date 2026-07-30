@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/vision-lab-inference-spike", "src-tauri"]
+members = ["crates/vision-lab-inference-spike", "crates/vision-lab-ui", "src-tauri"]
 resolver = "2"
 
 [workspace.package]

@@ -8,6 +8,12 @@ export default defineConfig({
   root: path.join(root, "frontend"),
   publicDir: path.join(root, "public"),
   base: "./",
+  resolve: {
+    alias: {
+      "vision-lab-scene-bridge": path.join(root, "frontend/src/scene.js"),
+      "vision-lab-tauri-bridge": path.join(root, "frontend/src/tauri-bridge.js"),
+    },
+  },
   build: {
     outDir: path.join(root, "dist"),
     emptyOutDir: true,

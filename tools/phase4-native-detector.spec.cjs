@@ -8,11 +8,19 @@ const resultRoot = path.join(projectRoot, "tests", "results", "phase-4");
 test("Phase 4 frontend sends exact raw frames to native detector", async ({ page }) => {
   fs.mkdirSync(resultRoot, { recursive: true });
   const schedulerSource = fs.readFileSync(
-    path.join(projectRoot, "frontend", "src", "main.js"),
+    path.join(projectRoot, "crates", "vision-lab-ui", "src", "app.rs"),
     "utf8",
   );
-  expect(schedulerSource).toContain("const MIN_INTERVAL = 300;");
-  expect(schedulerSource).toContain("now - lastRun < MIN_INTERVAL");
+  expect(schedulerSource).toContain("const MINIMUM_INTERVAL_MS: f64 = 300.0;");
+  expect(schedulerSource).toContain("can_request(now_ms, MINIMUM_INTERVAL_MS)");
+  for (const legacyController of ["main.js", "detector.js", "hud.js", "overlay.js"]) {
+    expect(fs.existsSync(path.join(projectRoot, "frontend", "src", legacyController))).toBe(false);
+  }
+  const bootstrap = fs.readFileSync(
+    path.join(projectRoot, "frontend", "src", "bootstrap.js"),
+    "utf8",
+  );
+  expect(bootstrap.trim().split(/\r?\n/)).toHaveLength(3);
   const requests = [];
   const errors = [];
   page.on("request", (request) => requests.push(request.url()));
@@ -102,17 +110,18 @@ test("Phase 4 frontend sends exact raw frames to native detector", async ({ page
   expect(state.calls[0].bytes).toBe(384 * 384 * 4);
   expect(state.calls[0].headers["x-vision-frame-width"]).toBe("384");
   expect(state.calls[0].headers["x-vision-frame-height"]).toBe("384");
-  expect(state.calls[0].headers["x-vision-threshold"]).toBe("0.65");
+  expect(Number(state.calls[0].headers["x-vision-threshold"])).toBeCloseTo(0.65, 5);
   expect(Number(state.calls[0].headers["x-vision-model-generation"])).toBeGreaterThan(0);
   // Scheduler timestamps capture start; first WebGL readback can delay its invoke substantially.
   expect(state.calls[1].at - state.calls[0].at).toBeGreaterThanOrEqual(200);
-  expect(state.detections[0].categories[0].categoryName).toBe("car");
-  expect(state.detections[0].boundingBox.originX).toBeGreaterThan(
-    state.detections[0].boundingBox.originY,
+  expect(state.detections[0].label).toBe("car");
+  expect(state.detections[0].boundingBox.x).toBeGreaterThan(
+    state.detections[0].boundingBox.y,
   );
 
   const detectorRequests = requests.filter((url) => /huggingface|\.hf\.co|onnx|ort-wasm/i.test(url));
   expect(detectorRequests).toEqual([]);
+  expect(requests.some((url) => /vision_lab_ui.*\.wasm/i.test(url))).toBe(true);
   expect(errors).toEqual([]);
 
   fs.writeFileSync(

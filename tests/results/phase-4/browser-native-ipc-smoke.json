@@ -1,43 +1,40 @@
 {
-  "capturedAt": "2026-07-30T18:46:28.751Z",
+  "capturedAt": "2026-07-30T19:45:06.480Z",
   "calls": [
     {
-      "at": 6541.9000000003725,
+      "at": 3826.5,
       "bytes": 589824,
       "headers": {
         "x-vision-request-id": "1",
         "x-vision-model-generation": "1",
         "x-vision-frame-width": "384",
         "x-vision-frame-height": "384",
-        "x-vision-threshold": "0.65"
+        "x-vision-threshold": "0.6499999761581421"
       }
     },
     {
-      "at": 6836.5,
+      "at": 4088,
       "bytes": 589824,
       "headers": {
         "x-vision-request-id": "2",
         "x-vision-model-generation": "1",
         "x-vision-frame-width": "384",
         "x-vision-frame-height": "384",
-        "x-vision-threshold": "0.65"
+        "x-vision-threshold": "0.6499999761581421"
       }
     }
   ],
   "detections": [
     {
+      "labelId": 3,
+      "label": "car",
+      "score": 0.949999988079071,
       "boundingBox": {
-        "originX": 360,
-        "originY": 180,
-        "width": 720,
-        "height": 360
-      },
-      "categories": [
-        {
-          "categoryName": "car",
-          "score": 0.95
-        }
-      ]
+        "x": 0.25,
+        "y": 0.20000000298023224,
+        "width": 0.5,
+        "height": 0.4000000059604645
+      }
     }
   ],
   "detectorRequests": [],

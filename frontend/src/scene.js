@@ -32,7 +32,7 @@ function importMesh(rootUrl, sceneFilename, scene) {
   });
 }
 
-export async function createBabylonScene(canvas) {
+async function createBabylonScene(canvas) {
   const engine = new Engine(
     canvas,
     true,
@@ -143,4 +143,33 @@ export async function createBabylonScene(canvas) {
 
   await loadDefault();
   return { engine, scene, camera, loadDefault, loadFiles, dispose };
+}
+
+let activeScene = null;
+
+export async function initializeScene(canvas) {
+  activeScene = await createBabylonScene(canvas);
+  await activeScene.scene.whenReadyAsync();
+  activeScene.engine.runRenderLoop(() => activeScene.scene.render());
+}
+
+export function loadDefaultModel(_generation) {
+  return activeScene.loadDefault();
+}
+
+export function loadModelFiles(files, _generation) {
+  return activeScene.loadFiles(files);
+}
+
+export function resizeScene() {
+  activeScene?.engine.resize();
+}
+
+export function getSceneFps() {
+  return activeScene?.engine.getFps() ?? 0;
+}
+
+export function disposeScene() {
+  activeScene?.dispose();
+  activeScene = null;
 }
