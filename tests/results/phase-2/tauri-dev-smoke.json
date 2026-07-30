@@ -1,0 +1,11 @@
+{
+  "capturedAt": "2026-07-30T13:39:00Z",
+  "title": "VISION/LAB",
+  "status": "READY",
+  "responding": true,
+  "windowOuterSize": {
+    "width": 1456,
+    "height": 939
+  },
+  "screenshot": "tauri-dev-window.png"
+}

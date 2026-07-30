@@ -1,0 +1,22 @@
+{
+  "CarConcept.glb": {
+    "bytes": 11778688,
+    "sha256": "c272098089d78c5cd9fd9f24ff50ee8acf8d932c55f2d55fc10adb6c8998966b"
+  },
+  "environmentSpecular.env": {
+    "bytes": 273974,
+    "sha256": "ca3e30921265d084d46c62c5220217d99296c0c3eacaeb40ca15f7534dfdd8bc"
+  },
+  "fonts/jetbrains-mono-latin.woff2": {
+    "bytes": 31432,
+    "sha256": "83c005d49d8a6a50474c73a5a36ac0468076e9c4a29da7bdb14995d80560a5be"
+  },
+  "fonts/michroma-latin.woff2": {
+    "bytes": 17908,
+    "sha256": "754fdb31c9906e82cf9c0ecb1d0b528073818fc2c418a39932c83a34cca027b6"
+  },
+  "fonts/sora-latin.woff2": {
+    "bytes": 33652,
+    "sha256": "fa26406eeda9a3c6ec3d9ea8813c3045d6dc755e30c716d5c094e8ef43be5a7f"
+  }
+}

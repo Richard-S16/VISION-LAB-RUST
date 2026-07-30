@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VISION/LAB - Live Object Detection</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <div class="bracket tl"></div>
+    <div class="bracket tr"></div>
+    <div class="bracket bl"></div>
+    <div class="bracket br"></div>
+
+    <main class="stage">
+      <canvas id="renderCanvas"></canvas>
+      <canvas id="overlayCanvas"></canvas>
+    </main>
+
+    <header class="brand">
+      <h1>VISION<span>/</span>LAB</h1>
+      <p>live object detection &mdash; babylon.js &times; rf-detr webgpu</p>
+    </header>
+
+    <div class="status-chip" id="statusChip">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">BOOTING</span>
+    </div>
+
+    <section class="hud">
+      <div class="stat">
+        <span class="label">LATENCY</span>
+        <span class="value" id="statLatency">--<small>ms</small></span>
+      </div>
+      <div class="divider"></div>
+      <div class="stat">
+        <span class="label">RENDER</span>
+        <span class="value" id="statFps">--<small>fps</small></span>
+      </div>
+      <div class="divider"></div>
+      <div class="stat">
+        <span class="label">OBJECTS</span>
+        <span class="value" id="statCount">--</span>
+      </div>
+    </section>
+
+    <section class="controls">
+      <button id="detectBtn" class="detect-btn">DETECT</button>
+      <div class="control">
+        <label for="threshold">CONFIDENCE <span id="thresholdValue">50%</span></label>
+        <input type="range" id="threshold" min="25" max="95" value="50" />
+      </div>
+      <div class="icon-group">
+        <button id="uploadBtn" class="icon-btn" title="Load 3D model (.glb / .gltf + files)" aria-label="Load 3D model">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 16V4" /><polyline points="6 10 12 4 18 10" /><path d="M4 20h16" />
+          </svg>
+        </button>
+        <button id="resetBtn" class="icon-btn" title="Reset to default model" aria-label="Reset to default model">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 3-6.7" /><polyline points="3 4 3 9 8 9" />
+          </svg>
+        </button>
+      </div>
+      <input type="file" id="modelFileInput" multiple hidden accept=".glb,.gltf,.bin,.png,.jpg,.jpeg,.webp,.ktx2" />
+    </section>
+    <p class="hint">drop .glb or .gltf + files anywhere</p>
+
+    <div class="dropzone" id="dropzone">
+      <div class="dropzone-inner">
+        DROP 3D MODEL
+        <small>.glb &nbsp;or&nbsp; .gltf + .bin + textures</small>
+      </div>
+    </div>
+
+    <div class="loader" id="loader">
+      <div class="loader-inner">
+        <h2>VISION<span>/</span>LAB</h2>
+        <div class="bar"><div class="fill" id="loaderBar"></div></div>
+        <p class="stage-log" id="loaderLog">initializing&hellip;</p>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "fixture": "frames/car-side.png",
+  "width": 384,
+  "height": 384,
+  "threshold": 0.5,
+  "model": "onnx-community/rfdetr_nano-ONNX",
+  "precision": "fp32-webgpu",
+  "inferenceMs": 1638.2000000029802,
+  "wallMs": 1639,
+  "detections": [
+    {
+      "boundingBox": {
+        "originX": 134,
+        "originY": 132,
+        "width": 136,
+        "height": 155
+      },
+      "categories": [
+        {
+          "categoryName": "car",
+          "score": 0.9925881624221802
+        }
+      ]
+    }
+  ]
+}

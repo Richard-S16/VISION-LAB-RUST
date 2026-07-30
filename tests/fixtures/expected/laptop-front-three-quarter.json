@@ -1,0 +1,26 @@
+{
+  "fixture": "frames/laptop-front-three-quarter.png",
+  "width": 384,
+  "height": 384,
+  "threshold": 0.5,
+  "model": "onnx-community/rfdetr_nano-ONNX",
+  "precision": "fp32-webgpu",
+  "inferenceMs": 1431.9000000059605,
+  "wallMs": 1433.199999988079,
+  "detections": [
+    {
+      "boundingBox": {
+        "originX": 106,
+        "originY": 74,
+        "width": 164,
+        "height": 238
+      },
+      "categories": [
+        {
+          "categoryName": "laptop",
+          "score": 0.99744713306427
+        }
+      ]
+    }
+  ]
+}

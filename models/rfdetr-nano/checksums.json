@@ -1,0 +1,18 @@
+{
+  "repository": "onnx-community/rfdetr_nano-ONNX",
+  "revision": "eae21cee0687a91bcf9fa071605c48d7705d2d91",
+  "files": {
+    "model.onnx": {
+      "bytes": 108074865,
+      "sha256": "9cbac6b11ce34a03034e4d5a24cfac5f18632fd6761d1311dd640232088d7fee"
+    },
+    "config.json": {
+      "bytes": 3213,
+      "sha256": "246ba9f59fb646d9c76de7a6b8d0b36babc06f03564bb68c5d46fa01eb21faac"
+    },
+    "preprocessor_config.json": {
+      "bytes": 444,
+      "sha256": "2e1eccd7d40143055fe4be530e27dc8eee3e0fe1359928b3f27a31e80582ab37"
+    }
+  }
+}

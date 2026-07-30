@@ -1,0 +1,57 @@
+{
+  "requestedProvider": "directml",
+  "provider": "directml",
+  "providerFallback": null,
+  "threshold": 0.5,
+  "inputNames": [
+    "pixel_values"
+  ],
+  "outputNames": [
+    "pred_boxes",
+    "logits"
+  ],
+  "inputShape": [
+    1,
+    3,
+    384,
+    384
+  ],
+  "logitsShape": [
+    1,
+    300,
+    91
+  ],
+  "predBoxesShape": [
+    1,
+    300,
+    4
+  ],
+  "timings": {
+    "sessionCreateMs": 797.1554,
+    "imageDecodeMs": 1.0292000000000001,
+    "preprocessMs": 0.8952,
+    "warmupMs": 261.2097,
+    "inferenceMs": 76.53359999999999,
+    "inferenceSamplesMs": [
+      76.61149999999999,
+      80.8479,
+      75.8194,
+      79.6253,
+      69.7639
+    ],
+    "postprocessMs": 0.2964
+  },
+  "detections": [
+    {
+      "label_id": 3,
+      "label": "car",
+      "score": 0.9925863,
+      "bounding_box": {
+        "originX": 134.62997,
+        "originY": 132.33792,
+        "width": 136.18987,
+        "height": 154.80916
+      }
+    }
+  ]
+}

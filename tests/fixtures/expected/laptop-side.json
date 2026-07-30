@@ -1,0 +1,26 @@
+{
+  "fixture": "frames/laptop-side.png",
+  "width": 384,
+  "height": 384,
+  "threshold": 0.5,
+  "model": "onnx-community/rfdetr_nano-ONNX",
+  "precision": "fp32-webgpu",
+  "inferenceMs": 1206.2999999970198,
+  "wallMs": 1210.5,
+  "detections": [
+    {
+      "boundingBox": {
+        "originX": 86,
+        "originY": 62,
+        "width": 177,
+        "height": 294
+      },
+      "categories": [
+        {
+          "categoryName": "laptop",
+          "score": 0.9849782586097717
+        }
+      ]
+    }
+  ]
+}

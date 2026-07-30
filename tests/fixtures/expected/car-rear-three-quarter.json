@@ -1,0 +1,40 @@
+{
+  "fixture": "frames/car-rear-three-quarter.png",
+  "width": 384,
+  "height": 384,
+  "threshold": 0.5,
+  "model": "onnx-community/rfdetr_nano-ONNX",
+  "precision": "fp32-webgpu",
+  "inferenceMs": 1207.699999988079,
+  "wallMs": 1213.7000000029802,
+  "detections": [
+    {
+      "boundingBox": {
+        "originX": 115,
+        "originY": 125,
+        "width": 150,
+        "height": 152
+      },
+      "categories": [
+        {
+          "categoryName": "car",
+          "score": 0.994427502155304
+        }
+      ]
+    },
+    {
+      "boundingBox": {
+        "originX": 147,
+        "originY": 151,
+        "width": 41,
+        "height": 60
+      },
+      "categories": [
+        {
+          "categoryName": "person",
+          "score": 0.5881515741348267
+        }
+      ]
+    }
+  ]
+}

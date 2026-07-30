@@ -1,0 +1,53 @@
+{
+  "capturedAt": "2026-07-29T18:15:08.251Z",
+  "browserName": "chromium",
+  "sourceCommit": "9653e15",
+  "sourcePackageVersion": "1.0.0",
+  "dependencies": {
+    "@babylonjs/core": "9.17.0",
+    "@babylonjs/loaders": "9.17.0",
+    "@huggingface/transformers": "4.2.0",
+    "vite": "8.1.5"
+  },
+  "detectorBackend": "webgpu-fp32",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "browserLanguage": "en-US",
+    "devicePixelRatio": 1,
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "renderCanvas": {
+      "width": 1440,
+      "height": 900
+    },
+    "webgl": {
+      "renderer": "ANGLE (Intel, Intel(R) Graphics (0x00007D45) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "vendor": "Google Inc. (Intel)"
+    },
+    "webgpu": {
+      "exposed": true,
+      "adapter": {
+        "architecture": "xe-lpg",
+        "description": null,
+        "device": null,
+        "vendor": "intel"
+      }
+    },
+    "measuredRenderFps": 60.133187555819894
+  },
+  "detectorLoad": {
+    "loadMs": 33385,
+    "progressSampleCount": 2696,
+    "progressMin": 0.015151534077789502,
+    "progressMax": 100
+  },
+  "consoleMessages": [
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected.",
+    "[log] BJS - [15:14:15]: Babylon.js v9.17.0 - WebGL2 - Parallel shader compilation",
+    "[debug] [vite] connecting...",
+    "[debug] [vite] connected."
+  ]
+}

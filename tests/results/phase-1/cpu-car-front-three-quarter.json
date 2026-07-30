@@ -1,0 +1,68 @@
+{
+  "requestedProvider": "cpu",
+  "provider": "cpu",
+  "providerFallback": null,
+  "threshold": 0.5,
+  "inputNames": [
+    "pixel_values"
+  ],
+  "outputNames": [
+    "pred_boxes",
+    "logits"
+  ],
+  "inputShape": [
+    1,
+    3,
+    384,
+    384
+  ],
+  "logitsShape": [
+    1,
+    300,
+    91
+  ],
+  "predBoxesShape": [
+    1,
+    300,
+    4
+  ],
+  "timings": {
+    "sessionCreateMs": 880.2319,
+    "imageDecodeMs": 1.2967,
+    "preprocessMs": 1.0462,
+    "warmupMs": 180.8458,
+    "inferenceMs": 227.03986,
+    "inferenceSamplesMs": [
+      199.62079999999997,
+      272.3741,
+      244.2144,
+      205.4253,
+      213.5647
+    ],
+    "postprocessMs": 0.5245
+  },
+  "detections": [
+    {
+      "label_id": 3,
+      "label": "car",
+      "score": 0.996601,
+      "bounding_box": {
+        "originX": 109.26703,
+        "originY": 132.45526,
+        "width": 150.04169,
+        "height": 150.56802
+      }
+    },
+    {
+      "label_id": 1,
+      "label": "person",
+      "score": 0.50105196,
+      "bounding_box": {
+        "originX": 148.53162,
+        "originY": 164.47891,
+        "width": 33.589798,
+        "height": 47.292118
+      }
+    }
+  ]
+}

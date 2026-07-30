@@ -1,0 +1,40 @@
+{
+  "fixture": "frames/car-front-three-quarter.png",
+  "width": 384,
+  "height": 384,
+  "threshold": 0.5,
+  "model": "onnx-community/rfdetr_nano-ONNX",
+  "precision": "fp32-webgpu",
+  "inferenceMs": 1942.5,
+  "wallMs": 1943.9000000059605,
+  "detections": [
+    {
+      "boundingBox": {
+        "originX": 109,
+        "originY": 132,
+        "width": 150,
+        "height": 151
+      },
+      "categories": [
+        {
+          "categoryName": "car",
+          "score": 0.9966011047363281
+        }
+      ]
+    },
+    {
+      "boundingBox": {
+        "originX": 148,
+        "originY": 164,
+        "width": 34,
+        "height": 47
+      },
+      "categories": [
+        {
+          "categoryName": "person",
+          "score": 0.50105220079422
+        }
+      ]
+    }
+  ]
+}

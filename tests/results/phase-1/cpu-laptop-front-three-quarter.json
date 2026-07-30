@@ -1,0 +1,57 @@
+{
+  "requestedProvider": "cpu",
+  "provider": "cpu",
+  "providerFallback": null,
+  "threshold": 0.5,
+  "inputNames": [
+    "pixel_values"
+  ],
+  "outputNames": [
+    "pred_boxes",
+    "logits"
+  ],
+  "inputShape": [
+    1,
+    3,
+    384,
+    384
+  ],
+  "logitsShape": [
+    1,
+    300,
+    91
+  ],
+  "predBoxesShape": [
+    1,
+    300,
+    4
+  ],
+  "timings": {
+    "sessionCreateMs": 577.4240000000001,
+    "imageDecodeMs": 1.7224,
+    "preprocessMs": 1.3626999999999998,
+    "warmupMs": 210.8061,
+    "inferenceMs": 221.76846,
+    "inferenceSamplesMs": [
+      217.8723,
+      215.8105,
+      249.173,
+      222.08249999999998,
+      203.904
+    ],
+    "postprocessMs": 0.6204000000000001
+  },
+  "detections": [
+    {
+      "label_id": 73,
+      "label": "laptop",
+      "score": 0.99744606,
+      "bounding_box": {
+        "originX": 106.694595,
+        "originY": 74.562195,
+        "width": 163.43391,
+        "height": 237.8139
+      }
+    }
+  ]
+}

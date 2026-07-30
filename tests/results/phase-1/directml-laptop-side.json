@@ -1,0 +1,57 @@
+{
+  "requestedProvider": "directml",
+  "provider": "directml",
+  "providerFallback": null,
+  "threshold": 0.5,
+  "inputNames": [
+    "pixel_values"
+  ],
+  "outputNames": [
+    "pred_boxes",
+    "logits"
+  ],
+  "inputShape": [
+    1,
+    3,
+    384,
+    384
+  ],
+  "logitsShape": [
+    1,
+    300,
+    91
+  ],
+  "predBoxesShape": [
+    1,
+    300,
+    4
+  ],
+  "timings": {
+    "sessionCreateMs": 947.8222,
+    "imageDecodeMs": 1.2868,
+    "preprocessMs": 1.132,
+    "warmupMs": 341.3315,
+    "inferenceMs": 78.403,
+    "inferenceSamplesMs": [
+      80.8787,
+      75.1163,
+      79.76650000000001,
+      78.38929999999999,
+      77.8642
+    ],
+    "postprocessMs": 0.7196
+  },
+  "detections": [
+    {
+      "label_id": 73,
+      "label": "laptop",
+      "score": 0.9849783,
+      "bounding_box": {
+        "originX": 86.47441,
+        "originY": 62.147358,
+        "width": 177.09131,
+        "height": 294.30957
+      }
+    }
+  ]
+}

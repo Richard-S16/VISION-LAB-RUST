@@ -1,0 +1,65 @@
+{
+  "requestedProvider": "auto",
+  "provider": "cpu",
+  "providerFallback": "DirectML unavailable: D:\\a\\ort-artifacts\\ort-artifacts\\onnxruntime\\onnxruntime\\core\\providers\\dml\\dml_provider_factory.cc(484)\\vision-lab-inference-spike.exe!00007FF754EB2B0D: (caller: 00007FF754EADAD9) Exception(1) tid(a6d8) 887A0002 The object was not found. If calling IDXGIFactory::EnumAdaptes, there is no adapter with the specified ordinal.\r\n",
+  "threshold": 0.5,
+  "inputNames": [
+    "pixel_values"
+  ],
+  "outputNames": [
+    "pred_boxes",
+    "logits"
+  ],
+  "inputShape": [
+    1,
+    3,
+    384,
+    384
+  ],
+  "logitsShape": [
+    1,
+    300,
+    91
+  ],
+  "predBoxesShape": [
+    1,
+    300,
+    4
+  ],
+  "timings": {
+    "sessionCreateMs": 658.0304,
+    "imageDecodeMs": 1.57,
+    "preprocessMs": 1.4020000000000001,
+    "warmupMs": 216.89520000000002,
+    "inferenceMs": 230.91905,
+    "inferenceSamplesMs": [
+      226.2614,
+      235.5767
+    ],
+    "postprocessMs": 0.6772
+  },
+  "detections": [
+    {
+      "label_id": 3,
+      "label": "car",
+      "score": 0.996601,
+      "bounding_box": {
+        "originX": 109.26703,
+        "originY": 132.45526,
+        "width": 150.04169,
+        "height": 150.56802
+      }
+    },
+    {
+      "label_id": 1,
+      "label": "person",
+      "score": 0.50105196,
+      "bounding_box": {
+        "originX": 148.53162,
+        "originY": 164.47891,
+        "width": 33.589798,
+        "height": 47.292118
+      }
+    }
+  ]
+}

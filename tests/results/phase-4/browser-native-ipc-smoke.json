@@ -1,0 +1,45 @@
+{
+  "capturedAt": "2026-07-30T18:46:28.751Z",
+  "calls": [
+    {
+      "at": 6541.9000000003725,
+      "bytes": 589824,
+      "headers": {
+        "x-vision-request-id": "1",
+        "x-vision-model-generation": "1",
+        "x-vision-frame-width": "384",
+        "x-vision-frame-height": "384",
+        "x-vision-threshold": "0.65"
+      }
+    },
+    {
+      "at": 6836.5,
+      "bytes": 589824,
+      "headers": {
+        "x-vision-request-id": "2",
+        "x-vision-model-generation": "1",
+        "x-vision-frame-width": "384",
+        "x-vision-frame-height": "384",
+        "x-vision-threshold": "0.65"
+      }
+    }
+  ],
+  "detections": [
+    {
+      "boundingBox": {
+        "originX": 360,
+        "originY": 180,
+        "width": 720,
+        "height": 360
+      },
+      "categories": [
+        {
+          "categoryName": "car",
+          "score": 0.95
+        }
+      ]
+    }
+  ],
+  "detectorRequests": [],
+  "errors": []
+}
