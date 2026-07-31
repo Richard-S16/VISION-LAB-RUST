@@ -11,6 +11,9 @@ extern "C" {
     #[wasm_bindgen(js_name = loadDefaultModel)]
     fn load_default_js(generation: f64) -> Promise;
 
+    #[wasm_bindgen(js_name = beginModelReplacement)]
+    fn begin_replacement_js(generation: f64);
+
     #[wasm_bindgen(js_name = loadModelFiles)]
     fn load_files_js(files: &JsValue, generation: f64) -> Promise;
 
@@ -22,6 +25,10 @@ extern "C" {
 
     #[wasm_bindgen(js_name = disposeScene)]
     pub fn dispose();
+}
+
+pub fn begin_replacement(generation: u64) {
+    begin_replacement_js(generation as f64);
 }
 
 pub async fn initialize(canvas: &HtmlCanvasElement) -> Result<(), JsValue> {

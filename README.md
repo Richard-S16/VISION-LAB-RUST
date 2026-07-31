@@ -185,7 +185,7 @@ third-party/              Asset provenance and license material
 
 ## Current Status
 
-Completed work includes baseline capture, native inference feasibility, Tauri parity shell, native detector service, native frontend integration, and the Rust/WASM application controller. Remaining work covers hardened Babylon adapter lifecycle and clean-machine release verification.
+Completed work includes baseline capture, native inference feasibility, Tauri parity shell, native detector service, native frontend integration, the Rust/WASM application controller, and hardened Babylon model ownership. Remaining work covers clean-machine release verification.
 
 Detailed implementation reports are available in `docs/`.
 

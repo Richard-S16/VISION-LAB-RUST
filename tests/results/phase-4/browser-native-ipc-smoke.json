@@ -1,8 +1,8 @@
 {
-  "capturedAt": "2026-07-30T19:45:06.480Z",
+  "capturedAt": "2026-07-31T12:35:53.552Z",
   "calls": [
     {
-      "at": 3826.5,
+      "at": 4329.29999999702,
       "bytes": 589824,
       "headers": {
         "x-vision-request-id": "1",
@@ -13,7 +13,7 @@
       }
     },
     {
-      "at": 4088,
+      "at": 4612.699999988079,
       "bytes": 589824,
       "headers": {
         "x-vision-request-id": "2",

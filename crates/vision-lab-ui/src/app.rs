@@ -30,9 +30,21 @@ pub struct App {
     state: AppState,
     smoother: LabelSmoother,
     drag_depth: u32,
+    model_load_active: bool,
+    pending_model_load: Option<ModelLoadRequest>,
     listeners: Vec<Closure<dyn FnMut(Event)>>,
     animation_frame: Option<Closure<dyn FnMut(f64)>>,
     disposed: bool,
+}
+
+enum ModelLoadSource {
+    Default,
+    Files(JsValue),
+}
+
+struct ModelLoadRequest {
+    generation: u64,
+    source: ModelLoadSource,
 }
 
 pub async fn boot() -> Result<(), JsValue> {
@@ -54,6 +66,8 @@ pub async fn boot() -> Result<(), JsValue> {
         state: AppState::default(),
         smoother: LabelSmoother::default(),
         drag_depth: 0,
+        model_load_active: false,
+        pending_model_load: None,
         listeners: Vec::new(),
         animation_frame: None,
         disposed: false,
@@ -255,6 +269,7 @@ impl App {
 
     fn begin_model_load(&mut self) -> u64 {
         let generation = self.state.start_model_load();
+        scene_bridge::begin_replacement(generation);
         self.overlay.clear();
         self.smoother.clear();
         let _ = self.dom.set_status("LOADING", Some("paused"));
@@ -281,26 +296,53 @@ impl App {
         }
     }
 
-    fn load_files(app: Rc<RefCell<Self>>, files: JsValue) {
-        let generation = app.borrow_mut().begin_model_load();
+    fn queue_model_load(app: Rc<RefCell<Self>>, source: ModelLoadSource) {
+        let request = {
+            let mut current = app.borrow_mut();
+            let request = ModelLoadRequest {
+                generation: current.begin_model_load(),
+                source,
+            };
+            if current.model_load_active {
+                current.pending_model_load = Some(request);
+                return;
+            }
+            current.model_load_active = true;
+            request
+        };
+        Self::run_model_load(app, request);
+    }
+
+    fn run_model_load(app: Rc<RefCell<Self>>, request: ModelLoadRequest) {
         let weak = Rc::downgrade(&app);
         spawn_local(async move {
-            let result = scene_bridge::load_files(&files, generation).await;
+            let result = match &request.source {
+                ModelLoadSource::Default => scene_bridge::load_default(request.generation).await,
+                ModelLoadSource::Files(files) => {
+                    scene_bridge::load_files(files, request.generation).await
+                }
+            };
             if let Some(app) = weak.upgrade() {
-                app.borrow_mut().finish_model_load(generation, result);
+                let pending = {
+                    let mut current = app.borrow_mut();
+                    current.finish_model_load(request.generation, result);
+                    current.model_load_active = false;
+                    current.pending_model_load.take()
+                };
+                if let Some(pending) = pending {
+                    app.borrow_mut().model_load_active = true;
+                    Self::run_model_load(app, pending);
+                }
             }
         });
     }
 
+    fn load_files(app: Rc<RefCell<Self>>, files: JsValue) {
+        Self::queue_model_load(app, ModelLoadSource::Files(files));
+    }
+
     fn load_default(app: Rc<RefCell<Self>>) {
-        let generation = app.borrow_mut().begin_model_load();
-        let weak = Rc::downgrade(&app);
-        spawn_local(async move {
-            let result = scene_bridge::load_default(generation).await;
-            if let Some(app) = weak.upgrade() {
-                app.borrow_mut().finish_model_load(generation, result);
-            }
-        });
+        Self::queue_model_load(app, ModelLoadSource::Default);
     }
 
     fn resize(&mut self) -> Result<(), JsValue> {
@@ -366,11 +408,17 @@ fn bind_controls(app: &Rc<RefCell<App>>, _document: &Document) -> Result<(), JsV
             return;
         };
         let files = app.borrow().dom.file_input.files();
+        let selected = js_sys::Array::new();
+        if let Some(files) = files {
+            for index in 0..files.length() {
+                if let Some(file) = files.item(index) {
+                    selected.push(&file);
+                }
+            }
+        }
         app.borrow().dom.file_input.set_value("");
-        if let Some(files) = files
-            && files.length() > 0
-        {
-            App::load_files(app, files.into());
+        if selected.length() > 0 {
+            App::load_files(app, selected.into());
         }
     });
     app.borrow_mut()

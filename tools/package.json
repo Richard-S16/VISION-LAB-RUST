@@ -5,7 +5,8 @@
     "capture": "playwright test capture-baseline.spec.cjs --config=playwright.config.cjs",
     "phase2": "playwright test phase2-parity.spec.cjs --config=playwright.phase2.config.cjs",
     "phase4": "playwright test phase4-native-detector.spec.cjs --config=playwright.phase2.config.cjs",
-    "phase5": "playwright test phase4-native-detector.spec.cjs --config=playwright.phase2.config.cjs"
+    "phase5": "playwright test phase4-native-detector.spec.cjs --config=playwright.phase2.config.cjs",
+    "phase6": "playwright test phase6-adapter.spec.cjs --config=playwright.phase2.config.cjs"
   },
   "devDependencies": {
     "@playwright/test": "1.62.0"
