@@ -1,7 +1,7 @@
 {
   "name": "vision-lab-rust",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "build:wasm": "wasm-pack build crates/vision-lab-ui --target web --out-dir ../../frontend/pkg --out-name vision_lab_ui",

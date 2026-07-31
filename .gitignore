@@ -7,3 +7,4 @@ tools/playwright-report/
 /src-tauri/gen/
 /plan.md
 /frontend/pkg/
+/docs/

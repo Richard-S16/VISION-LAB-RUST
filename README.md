@@ -47,10 +47,18 @@ Native detector responsibilities are separated under `src-tauri/src/detector/`:
 | `postprocess.rs` | Softmax, labels, normalized boxes, clamping, and sorting |
 | `types.rs` | Serializable IPC requests, responses, diagnostics, and timings |
 
-## Requirements
+## Runtime Requirements
 
-- Windows 10 or Windows 11 x86_64.
+- Fully updated Windows 10 or Windows 11 x86_64 with DirectML, D3D12, DXGI,
+  and DXCore system components.
 - WebView2 Runtime.
+- A DirectX 12-capable GPU is recommended. The detector falls back to CPU when
+  DirectML provider initialization fails.
+- No Node.js, Rust, Python, CUDA, system ONNX Runtime, or separately installed
+  Visual C++ Redistributable is required by the installed application.
+
+## Build Requirements
+
 - Node.js 22 or newer.
 - Rust 1.97.1 with the MSVC target and Visual Studio C++ build tools.
 - `wasm-pack` 0.15.0 for the Rust/WASM frontend build.
@@ -140,6 +148,20 @@ NSIS output is written under:
 ```text
 target/<profile>/bundle/nsis/
 ```
+
+The verified 0.1.1 x64 release installer is 115,952,021 bytes. Its installed
+application footprint is 147,663,531 bytes, including the fp32 model and
+app-local Visual C++ runtime.
+
+Release inference measurements on the baseline machine, using one warmup and
+five measured runs of `car-front-three-quarter.png`:
+
+| Metric | DirectML | CPU |
+|---|---:|---:|
+| Session creation | 2,104.13 ms | 698.85 ms |
+| Mean inference | 124.31 ms | 233.97 ms |
+| Preprocessing | 1.36 ms | 1.33 ms |
+| Postprocessing | 1.11 ms | 0.61 ms |
 
 ## Verification
 
